@@ -51,10 +51,10 @@ class _EvDashboardScreenState extends State<EvDashboardScreen>
     );
 
     // 4. Car image from right (after card animation)
-    carSlideX = Tween<double>(begin: 120, end: 0).animate(
+    carSlideX = Tween<double>(begin: 550, end: 200).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.55, 0.80, curve: Curves.easeOut),
+        curve: const Interval(0.55, 0.90, curve: Curves.easeOut),
       ),
     );
 
@@ -131,12 +131,15 @@ class _EvDashboardScreenState extends State<EvDashboardScreen>
                 Transform.translate(
                   offset: Offset(0, cardSlideY.value),
                   child: Container(
+                    width: double.infinity,
+                    height: 350,
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: const Color(0xfff4efe9),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(
+                      spacing: 20,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Model Name from left
@@ -155,9 +158,15 @@ class _EvDashboardScreenState extends State<EvDashboardScreen>
                         // CAR IMAGE from right
                         Transform.translate(
                           offset: Offset(carSlideX.value, 0),
-                          child: Image.asset(
-                            "assets/car_top_view.png",
-                            height: 160,
+                          child: Transform.rotate(
+                            angle: -1.57,
+                            child: Transform.scale(
+                              scale: 2.2,
+                              child: Image.asset(
+                                "assets/car_top_view.png",
+                                height: 200,
+                              ),
+                            ),
                           ),
                         ),
                       ],
