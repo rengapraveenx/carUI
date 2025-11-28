@@ -1,3 +1,4 @@
+import 'package:carui/screens/widgets/hearder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -8,45 +9,62 @@ class ControlsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 25, right: 22, left: 22),
+              child: Header(),
+            ),
+            const SizedBox(height: 30),
+
+            // Control buttons
+            Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _btn(Icons.flash_on, "Lights"),
+                    _btn(Icons.ac_unit, "AC"),
+                    _btn(Icons.lock, "Lock"),
+                  ],
+                )
+                .animate()
+                .fadeIn(duration: 800.ms)
+                .slideY(begin: 1.5, end: 0)
+                .fadeIn(),
+
+            const SizedBox(height: 100),
+
+            // HERO CAR
+            Expanded(
+              child: GestureDetector(
+                onPanUpdate: (details) {
+                  if (details.delta.dy < -10) {
+                    print("Swipe UP");
+                  } else if (details.delta.dy > 10) {
+                    print("Swipe DOWN");
+                  } else if (details.delta.dx > 10) {
+                    print("Swipe RIGHT");
+                  } else if (details.delta.dx < -10) {
+                    print("Swipe LEFT");
+                  }
+                },
+                child: Hero(
+                  tag: 'carTag',
+                  child: Transform.translate(
+                    offset: Offset(0, 150),
+                    child: Transform.rotate(
+                      angle: 0,
+                      child: Transform.scale(
+                        scale: 1,
+                        child: Image.asset("assets/car_top_view.png"),
+                      ),
+                    ),
+                  ),
+                ).animate().fadeIn(duration: 500.ms).slideY(begin: 1, end: 0),
+              ),
+            ),
+          ],
         ),
-        title: const Text(
-          "Car Controls",
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
-          const SizedBox(height: 30),
-
-          // Control buttons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _btn(Icons.flash_on, "Lights"),
-              _btn(Icons.ac_unit, "AC"),
-              _btn(Icons.lock, "Lock"),
-            ],
-          ).animate().slideY(begin: -0.5, end: 0).fadeIn(),
-
-          const SizedBox(height: 100),
-
-          // HERO CAR
-          Hero(
-            tag: 'carTag',
-            child: Image.asset(
-              "assets/car_top_view.png",
-            ).animate().slideY(begin: 1, end: 0),
-            // .scale(begin: 0.8, end: 2.8),
-            // .scale(begin: Offset(0.8, 0.8), end: Offset(2.8, 2.8)),
-          ),
-        ],
       ),
     );
   }
