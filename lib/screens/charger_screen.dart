@@ -127,29 +127,29 @@ class ChargerScreen extends StatelessWidget {
 
                         // ✨ GLASSY BORDER
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.25), // glass edge
+                          color: Colors.black.withOpacity(0.25), // glass edge
                           width: 3,
                         ),
 
                         // ✨ GLASS BACKGROUND
-                        color: Colors.white.withOpacity(0.12),
+                        color: Colors.black87,
                       ),
                       padding: const EdgeInsets.all(22),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: const [
                           Text(
-                            '2 Mid Care',
+                            'Start Charging',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black87,
+                              color: Colors.white,
                             ),
                           ),
                           Icon(
-                            Icons.circle_notifications,
+                            Icons.ev_station_rounded,
                             size: 30,
-                            color: Colors.black87,
+                            color: Colors.white,
                           ),
                         ],
                       ),
