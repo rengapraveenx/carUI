@@ -1,4 +1,5 @@
 import 'package:carui/screens/controls.dart';
+import 'package:carui/screens/widgets/battery_widget.dart';
 import 'package:carui/screens/widgets/hearder_widget.dart';
 import 'package:carui/screens/widgets/os_map_widget.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class EvDashboardScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // HEADER
-              Header(),
+              Header(textColor: Colors.black),
 
               // CAR CARD
               Container(
@@ -126,47 +127,7 @@ class EvDashboardScreen extends StatelessWidget {
                       ),
 
                       // BATTERY
-                      Container(
-                        height: 200,
-                        width: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(22),
-                          color: Colors.grey.shade300,
-                        ),
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Align(
-                              alignment: Alignment.bottomCenter,
-                              child:
-                                  Container(
-                                    height: 200 * 0.73,
-                                    width: 60,
-                                    decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.vertical(
-                                        bottom: Radius.circular(22),
-                                        top: Radius.circular(12),
-                                      ),
-                                      color: Colors.greenAccent.shade400,
-                                    ),
-                                  ).animate().scaleY(
-                                    begin: 0,
-                                    end: 1,
-                                    duration: 600.ms,
-                                    curve: Curves.easeOut,
-                                    alignment: Alignment.bottomCenter,
-                                  ),
-                            ),
-                            const Text(
-                              "73%",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      BatteryWidget(),
                     ],
                   ),
                 ],

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class Header extends StatelessWidget {
-  const Header({super.key});
+  final Color textColor;
+  const Header({super.key, required this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class Header extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.w300,
-                  color: Colors.black,
+                  color: textColor,
                 ),
               ),
               TextSpan(
@@ -26,7 +27,7 @@ class Header extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: textColor,
                 ),
               ),
             ],
