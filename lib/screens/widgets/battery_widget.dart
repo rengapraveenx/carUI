@@ -41,7 +41,12 @@ class BatteryWidget extends StatelessWidget {
           ),
           const Text(
             "73%",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              // color: Color(0xff9E8D97),
+              color: Colors.black54,
+            ),
           ),
         ],
       ),

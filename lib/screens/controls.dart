@@ -1,3 +1,5 @@
+import 'package:carui/screens/service_screen.dart';
+import 'package:carui/screens/widgets/action_button.dart';
 import 'package:carui/screens/widgets/battery_widget.dart';
 import 'package:carui/screens/widgets/hearder_widget.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +63,7 @@ class ControlsScreen extends StatelessWidget {
                                 //* Map
                                 actionButton(
                                   description: 'Direction',
-                                  icon: Icons.map_outlined,
+                                  icon: Icons.map,
                                   bgColor: Color(0xFFFFFDFE),
                                   fgColor: Color(0xff4D3F56),
                                   isBigButton: false,
@@ -83,7 +85,7 @@ class ControlsScreen extends StatelessWidget {
                                     actionButton(
                                       title: '2 Mid',
                                       description: 'Care',
-                                      icon: Icons.lock,
+                                      icon: Icons.circle_notifications,
                                       bgColor: Color(0xFFFCEAE7),
                                       fgColor: Color(0xFF967E84),
                                       isBigButton: true,
@@ -106,7 +108,10 @@ class ControlsScreen extends StatelessWidget {
               child: GestureDetector(
                 onPanUpdate: (details) {
                   if (details.delta.dy < -10) {
-                    print("Swipe UP");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const ServiceScreen()),
+                    );
                   } else if (details.delta.dy > 10) {
                     print("Swipe DOWN");
                   } else if (details.delta.dx > 10) {
@@ -114,6 +119,9 @@ class ControlsScreen extends StatelessWidget {
                   } else if (details.delta.dx < -10) {
                     print("Swipe LEFT");
                   }
+                },
+                onTap: () {
+                  Navigator.pop(context);
                 },
                 child: Hero(
                   tag: 'carTag',
@@ -133,79 +141,6 @@ class ControlsScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget actionButton({
-    String? title,
-    required String description,
-    required IconData icon,
-    required Color bgColor,
-    required Color fgColor,
-    bool isBigButton = true,
-  }) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: isBigButton ? 18 : 10,
-        horizontal: 30,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(28),
-        color: bgColor,
-      ),
-      child: Column(
-        spacing: 10,
-        children: [
-          Column(
-            children: [
-              if (title != null && isBigButton)
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: fgColor,
-                  ),
-                ),
-              if (isBigButton)
-                Text(
-                  description,
-                  style: TextStyle(
-                    color: fgColor.withAlpha(200),
-                    fontWeight: FontWeight.w300,
-                    fontSize: 10,
-                  ),
-                ),
-            ],
-          ),
-          if (isBigButton) Icon(icon, color: fgColor, size: 30),
-          if (!isBigButton)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10, top: 5),
-              child: Column(
-                spacing: 6,
-                children: [
-                  Icon(icon, color: fgColor, size: 30),
-                  Text(
-                    description,
-                    style: TextStyle(
-                      color: fgColor.withAlpha(200),
-                      fontWeight: FontWeight.w300,
-                      fontSize: 10,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-
-  Widget batteryIndicator() {
-    return Stack(children: [
-
-      ],
     );
   }
 }
