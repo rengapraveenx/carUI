@@ -21,7 +21,7 @@ class ControlsScreen extends StatelessWidget {
 
             // Control buttons
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 20),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -34,11 +34,13 @@ class ControlsScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 BatteryWidget(width: 100, height: 230),
+                                //* AC
                                 actionButton(
                                   title: '24 C',
                                   description: 'Climate',
                                   icon: Icons.ac_unit,
                                   bgColor: Color(0xFFE1EEFA),
+                                  fgColor: Colors.blueGrey,
                                   isBigButton: true,
                                 ),
                               ],
@@ -56,11 +58,12 @@ class ControlsScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
+                                //* Map
                                 actionButton(
-                                  title: '24 C',
-                                  description: 'Climate',
-                                  icon: Icons.ac_unit,
-                                  bgColor: Color(0xFFE1EEFA),
+                                  description: 'Direction',
+                                  icon: Icons.map_outlined,
+                                  bgColor: Color(0xFFFFFDFE),
+                                  fgColor: Color(0xff4D3F56),
                                   isBigButton: false,
                                 ),
                                 Row(
@@ -68,18 +71,21 @@ class ControlsScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
+                                    //* Lock
                                     actionButton(
-                                      title: '24 C',
-                                      description: 'Climate',
-                                      icon: Icons.ac_unit,
-                                      bgColor: Color(0xFFE1EEFA),
+                                      description: 'Locked',
+                                      icon: Icons.lock,
+                                      bgColor: Color(0xFF5D5E74),
+                                      fgColor: Color(0xFFFFFBFF),
                                       isBigButton: false,
                                     ),
+                                    //* Care
                                     actionButton(
-                                      title: '24 C',
-                                      description: 'Climate',
-                                      icon: Icons.ac_unit,
-                                      bgColor: Color(0xFFE1EEFA),
+                                      title: '2 Mid',
+                                      description: 'Care',
+                                      icon: Icons.lock,
+                                      bgColor: Color(0xFFFCEAE7),
+                                      fgColor: Color(0xFF967E84),
                                       isBigButton: true,
                                     ),
                                   ],
@@ -131,10 +137,11 @@ class ControlsScreen extends StatelessWidget {
   }
 
   Widget actionButton({
-    required String title,
-    String? description,
+    String? title,
+    required String description,
     required IconData icon,
     required Color bgColor,
+    required Color fgColor,
     bool isBigButton = true,
   }) {
     return Container(
@@ -151,35 +158,43 @@ class ControlsScreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              if (isBigButton)
+              if (title != null && isBigButton)
                 Text(
                   title,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blueGrey,
+                    color: fgColor,
                   ),
                 ),
-              if (description != null && isBigButton)
+              if (isBigButton)
                 Text(
                   description,
                   style: TextStyle(
-                    color: Colors.blueGrey.withAlpha(200),
+                    color: fgColor.withAlpha(200),
                     fontWeight: FontWeight.w300,
                     fontSize: 10,
                   ),
                 ),
             ],
           ),
-          if (isBigButton) Icon(icon, color: Colors.blueGrey, size: 30),
-          if (!isBigButton) Icon(icon, color: Colors.blueGrey, size: 30),
+          if (isBigButton) Icon(icon, color: fgColor, size: 30),
           if (!isBigButton)
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10, top: 5),
+              child: Column(
+                spacing: 6,
+                children: [
+                  Icon(icon, color: fgColor, size: 30),
+                  Text(
+                    description,
+                    style: TextStyle(
+                      color: fgColor.withAlpha(200),
+                      fontWeight: FontWeight.w300,
+                      fontSize: 10,
+                    ),
+                  ),
+                ],
               ),
             ),
         ],
