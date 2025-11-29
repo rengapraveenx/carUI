@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:carui/screens/charging_screen.dart';
 import 'package:carui/screens/widgets/battery_widget.dart';
 import 'package:carui/screens/widgets/hearder_widget.dart';
 import 'package:flutter/material.dart';
@@ -111,50 +110,37 @@ class ChargerScreen extends StatelessWidget {
               ],
             ),
 
-            Expanded(
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ChargingScreen()),
+                );
+              },
               child: Container(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
-                ),
-                child: ClipRRect(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(32),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(32),
-
-                        // ✨ GLASSY BORDER
-                        border: Border.all(
-                          color: Colors.black.withOpacity(0.25), // glass edge
-                          width: 3,
-                        ),
-
-                        // ✨ GLASS BACKGROUND
-                        color: Colors.black87,
-                      ),
-                      padding: const EdgeInsets.all(22),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
-                          Text(
-                            'Start Charging',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Icon(
-                            Icons.ev_station_rounded,
-                            size: 30,
-                            color: Colors.white,
-                          ),
-                        ],
+                  color: Colors.black87,
+                ),
+                padding: const EdgeInsets.all(22),
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                    Text(
+                      'Start Charging',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
-                  ),
+                    Icon(
+                      Icons.ev_station_rounded,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                  ],
                 ),
               ),
             ),
