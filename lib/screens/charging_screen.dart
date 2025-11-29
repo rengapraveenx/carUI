@@ -1,4 +1,3 @@
-import 'package:carui/screens/charger_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -25,33 +24,39 @@ class ChargingScreen extends StatelessWidget {
                 ).animate().fadeIn(duration: 1000.ms).rotate(begin: 0, end: 1),
 
                 GestureDetector(
-                  onPanUpdate: (details) {
-                    if (details.delta.dy < -10) {
-                      print("Swipe UP");
-                    } else if (details.delta.dy > 10) {
-                      Navigator.pop(context);
-                    } else if (details.delta.dx > 10) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const ChargerScreen(),
+                      onPanUpdate: (details) {
+                        if (details.delta.dy < -10) {
+                          print("Swipe UP");
+                        } else if (details.delta.dy > 10) {
+                          Navigator.pop(context);
+                        } else if (details.delta.dx > 10) {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (_) => const ChargerScreen(),
+                          //   ),
+                          // );
+                        } else if (details.delta.dx < -10) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      child: Hero(
+                        tag: 'carTag',
+                        child: Transform.translate(
+                          offset: Offset(0, -200),
+                          child: Transform.rotate(
+                            angle: 0,
+                            child: Transform.scale(
+                              scale: 1,
+                              child: Image.asset("assets/car_top_view.png"),
+                            ),
+                          ),
                         ),
-                      );
-                    } else if (details.delta.dx < -10) {
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: Hero(
-                    tag: 'carTag',
-                    child: Transform.translate(
-                      offset: Offset(0, -200),
-                      child: Transform.scale(
-                        scale: 1,
-                        child: Image.asset("assets/car_top_view.png"),
                       ),
-                    ),
-                  ),
-                ).animate().fadeIn(duration: 500.ms).slideX(begin: -1, end: 0),
+                    )
+                    .animate()
+                    .fadeIn(duration: 800.ms)
+                    .slideY(begin: -0.2, end: 0),
               ],
             ),
 
@@ -87,7 +92,14 @@ class ChargingScreen extends StatelessWidget {
                         cell().animate(delay: 900.ms).fadeIn(duration: 100.ms),
                         cell().animate(delay: 1200.ms).fadeIn(duration: 100.ms),
                         cell().animate(delay: 1500.ms).fadeIn(duration: 100.ms),
-                        cell().animate(delay: 1800.ms).fadeIn(duration: 100.ms),
+                        cell()
+                            .animate(
+                              delay: 1800.ms,
+                              autoPlay: true,
+                              onPlay: (controller) =>
+                                  controller.repeat(reverse: true),
+                            )
+                            .fadeIn(duration: 800.ms, delay: 400.ms),
                       ],
                     ),
                   ),
