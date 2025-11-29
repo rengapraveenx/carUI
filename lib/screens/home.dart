@@ -37,24 +37,26 @@ class EvDashboardScreen extends StatelessWidget {
                   children: [
                     // Model Name
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
-                          "Model 2.0",
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          "DURA chassis",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ],
-                    ).animate().slideX(begin: -1, end: 0, duration: 500.ms),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              "Model 2.0",
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              "DURA chassis",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                          ],
+                        )
+                        .animate(delay: 800.ms)
+                        .slideX(begin: -1.5, end: 0, duration: 500.ms),
 
                     const SizedBox(height: 10),
 
@@ -88,7 +90,7 @@ class EvDashboardScreen extends StatelessWidget {
                         )
                         .animate()
                         .fadeIn(duration: 500.ms)
-                        .slideY(
+                        .slideX(
                           begin: 1,
                           end: 0,
                           duration: 700.ms,
@@ -120,7 +122,7 @@ class EvDashboardScreen extends StatelessWidget {
                           ),
                           child:
                               const SimpleOsmPreview(lat: 12.9716, lng: 77.5946)
-                                  .animate()
+                                  .animate(delay: 1000.ms)
                                   .fadeIn(duration: 600.ms)
                                   .slideX(begin: -1, end: 0),
                         ),

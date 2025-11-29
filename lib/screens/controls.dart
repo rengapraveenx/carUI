@@ -48,7 +48,7 @@ class ControlsScreen extends StatelessWidget {
                               ],
                             )
                             .animate()
-                            .fadeIn(duration: 400.ms)
+                            .fadeIn(duration: 800.ms)
                             .slideX(begin: -1.5, end: 0)
                             .fadeIn(),
                   ),
@@ -95,7 +95,7 @@ class ControlsScreen extends StatelessWidget {
                               ],
                             )
                             .animate()
-                            .fadeIn(duration: 400.ms)
+                            .fadeIn(duration: 1000.ms)
                             .slideX(begin: 1.5, end: 0)
                             .fadeIn(),
                   ),

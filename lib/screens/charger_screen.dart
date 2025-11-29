@@ -63,46 +63,52 @@ class ChargerScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        BatteryWidget(width: 140, height: 230),
+                        BatteryWidget(width: 140, height: 230)
+                            .animate(delay: 500.ms)
+                            .fadeIn(duration: 300.ms)
+                            .slideX(begin: -1, end: 0),
                         Container(
-                          height: 200,
-                          width: 140,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(28),
-                            color: Color(0xffE1EEFA),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            spacing: 10,
-                            children: [
-                              Column(
+                              height: 200,
+                              width: 140,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(28),
+                                color: Color(0xffE1EEFA),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                spacing: 10,
                                 children: [
-                                  Text(
-                                    'CHAdeMO',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black54,
-                                    ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        'CHAdeMO',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black54,
+                                        ),
+                                      ),
+                                      Text(
+                                        '\$3.60/KWT',
+                                        style: TextStyle(
+                                          color: Colors.black38,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    '\$3.60/KWT',
-                                    style: TextStyle(
-                                      color: Colors.black38,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 10,
-                                    ),
+                                  Image.asset(
+                                    'assets/ch.png',
+                                    width: 100,
+                                    height: 100,
                                   ),
                                 ],
                               ),
-                              Image.asset(
-                                'assets/ch.png',
-                                width: 100,
-                                height: 100,
-                              ),
-                            ],
-                          ),
-                        ),
+                            )
+                            .animate(delay: 700.ms)
+                            .fadeIn(duration: 300.ms)
+                            .slideX(begin: -1, end: 0, delay: 100.ms),
                       ],
                     ),
                   ),

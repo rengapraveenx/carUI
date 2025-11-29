@@ -32,7 +32,7 @@ class Header extends StatelessWidget {
               ),
             ],
           ),
-        ).animate().slideX(begin: -1, end: 0, duration: 400.ms),
+        ).animate(delay: 400.ms).slideX(begin: -1.3, end: 0, duration: 400.ms),
 
         // Search + Profile
         Stack(
@@ -60,7 +60,7 @@ class Header extends StatelessWidget {
                     ),
                   ),
                 )
-                .animate(delay: 200.ms)
+                .animate(delay: 800.ms)
                 .slideX(begin: 0, end: -1.3, duration: 450.ms),
           ],
         ),
